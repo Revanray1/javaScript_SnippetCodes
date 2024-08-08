@@ -31,3 +31,41 @@ _____________________________________________________________________
 Output:
 
 abba
+
+_________________________________________________________________________
+// using While Loop
+function largestPalindromicString(str) {
+  let maxlength = 0;
+  let start = 0;
+  let i = 0;
+  
+  while (i < str.length) {
+    let j = i;
+    
+    while (j < str.length) {
+      let isPalindrome = true;
+      let k = 0;
+      
+      while (k < (j - i + 1) / 2) {
+        if (str[i + k] !== str[j - k]) {
+          isPalindrome = false;
+          break;
+        }
+        k++;
+      }
+      
+      if (isPalindrome && (j - i + 1) > maxlength) {
+        start = i;
+        maxlength = j - i + 1;
+      }
+      j++;
+    }
+    i++;
+  }
+  
+  return str.substring(start, start + maxlength);
+  // OR
+  // return str.slice(start, start + maxlength);
+}
+
+console.log(largestPalindromicString("ababad"));
