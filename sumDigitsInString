@@ -1,0 +1,14 @@
+function sumDigitsInString(inputString) {
+  let sum = 0;
+
+  for (let char of inputString) {
+    if (!isNaN(char) && char !== ' ') {
+      sum += +char; // Unary plus converts string digit to number
+    }
+  }
+
+  console.log("Sum of digits:", sum);
+}
+
+sumDigitsInString("a1b2c3d4");  // Output: Sum of digits: 10
+sumDigitsInString("hello123");   // Output: Sum of digits: 6
