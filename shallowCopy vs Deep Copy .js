@@ -62,4 +62,73 @@ Approach 2 - original arr:
 **arr was mutated — because newArr2[0] and arr[0] are the same object due to the shallow copy.
 
 
+methods
+
+SHALLOW COPY 
+
+
+1. Using Object.assign():
+const original = { a: 1, b: { c: 2 } };
+const shallowCopy = Object.assign({}, original);
+ 
+2. Using the Spread Syntax (...) (for objects):
+const original = { a: 1, b: { c: 2 } };
+const shallowCopy = { ...original };
+
+3.Using Spread Syntax (...) for Arrays
+const originalArray = [1, 2, 3];
+const shallowCopyArray = [...originalArray];
+
+4.Using Array.prototype.slice() (for arrays):
+const originalArray = [1, 2, 3];
+const shallowCopyArray = originalArray.slice();
+
+5.Using Array.from() (for Arrays)
+const originalArray = [1, 2, 3];
+const shallowCopyArray = Array.from(originalArray);
+
+
+
+DEEP Copy
+
+1. Using JSON.parse() and JSON.stringify():
+const original = { a: 1, b: { c: 2 } };
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+2. Using a Custom Recursive Function
+
+function deepCopy(obj) {
+  if (obj === null || typeof obj !== 'object') return obj;
+  
+  // Handle Date objects
+  if (obj instanceof Date) return new Date(obj);
+
+  // Handle Array objects
+  if (Array.isArray(obj)) return obj.map(item => deepCopy(item));
+
+  // Handle Object type
+  const copy = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      copy[key] = deepCopy(obj[key]);
+    }
+  }
+  return copy;
+}
+
+const original = { a: 1, b: { c: 2 }, d: [3, 4] };
+const deepCopyObj = deepCopy(original);
+
+3. Using External Libraries (e.g., Lodash)
+const _ = require('lodash');
+
+const original = { a: 1, b: { c: 2 } };
+const deepCopy = _.cloneDeep(original);
+
+4. Using a Custom Solution with StructuredClone() (Browser environment only)
+const original = { a: 1, b: { c: 2 }, d: new Date() };
+const deepCopy = structuredClone(original);
+
+5.
+
 
