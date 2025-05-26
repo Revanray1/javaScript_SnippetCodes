@@ -17,7 +17,7 @@ function mapData(data, callBack){
   
 }
 
-const callBack = (d)=>( d.course !== "BSC")
+const callBack = (d)=>( d.course !== "BSC") // here we can use what thecondition required -> map filter
 
 const result = mapData(data,callBack)
 
